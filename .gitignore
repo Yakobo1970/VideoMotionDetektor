@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+build/
+dist/
+*.db
+*.log
+yolov8n.pt
