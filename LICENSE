@@ -19,3 +19,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+Diese Lizenz gilt fuer den Code dieses Projekts. Die Objekterkennung nutzt
+Ultralytics YOLOv8 (Bibliothek "ultralytics" und die Gewichtsdatei
+yolov8n.pt), die unter der GNU AGPL-3.0 steht (https://www.ultralytics.com/
+license). Der Installer enthaelt diese Komponenten; der vollstaendige
+Quellcode dieses Projekts ist oeffentlich unter
+https://github.com/Yakobo1970/VideoMotionDetektor verfuegbar. Weitere
+Abhaengigkeiten (PySide6/Qt unter LGPL-3.0, OpenCV unter Apache-2.0, PyTorch
+unter BSD-3-Clause, send2trash unter BSD) behalten ihre eigenen Lizenzen.

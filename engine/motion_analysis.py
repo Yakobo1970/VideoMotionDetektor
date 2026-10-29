@@ -36,11 +36,14 @@ nicht ladbar, faellt die Analyse auf die reine Heuristik zurueck.
 
 from __future__ import annotations
 
+import shutil
 from dataclasses import dataclass, field
 from pathlib import Path
 
 import cv2
 import numpy as np
+
+from paths import ASSETS_DIR
 
 MODEL_DIR = Path.home() / "AppData" / "Local" / "VideoMotionDetektor" / "models"
 
@@ -127,7 +130,11 @@ def _load_detector():
         from ultralytics import YOLO
 
         MODEL_DIR.mkdir(parents=True, exist_ok=True)
-        model = YOLO(str(MODEL_DIR / "yolov8n.pt"))
+        weights = MODEL_DIR / "yolov8n.pt"
+        bundled = ASSETS_DIR / "models" / "yolov8n.pt"
+        if not weights.exists() and bundled.exists():
+            shutil.copy2(bundled, weights)
+        model = YOLO(str(weights))
     except Exception:
         model = None
     _detector_cache["model"] = model
@@ -367,7 +374,8 @@ def _detect_objects_in_frame(detector, frame_bgr, min_conf: float):
     predict_conf = min([min_conf, *CLASS_CONFIDENCE_OVERRIDES.values()])
     try:
         results = detector.predict(frame_bgr, verbose=False, conf=predict_conf)
-    except Exception:
+    except Exception as exc:
+        _detector_cache["last_error"] = repr(exc)
         return [], 0.0
     labels = []
     best_conf = 0.0

@@ -6,3 +6,4 @@ dist/
 *.db
 *.log
 yolov8n.pt
+dist_installer/
